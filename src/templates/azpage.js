@@ -10,8 +10,9 @@ const AZPage = ({ data }) => {
   var pageContent = page.field_az_body.processed;
 
   page.relationships.uid.relationships.file__file.forEach(file => {
-      var pathname = new URL(file.localFile.url).pathname
-      pageContent = pageContent.replace(`#${pathname}#g`, file.localFile.publicURL);
+      var pathname = new URL(file.localFile.url).pathname;
+      var re = new RegExp(pathname, "g");
+      pageContent = pageContent.replace(re, file.localFile.publicURL);
   });
 
   return (
