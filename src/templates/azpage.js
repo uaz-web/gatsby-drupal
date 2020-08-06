@@ -11,7 +11,7 @@ const AZPage = ({ data }) => {
 
   page.relationships.uid.relationships.file__file.forEach(file => {
       var pathname = new URL(file.localFile.url).pathname
-      pageContent = pageContent.replaceAll(pathname, file.localFile.publicURL);
+      pageContent = pageContent.replace(`#${pathname}#g`, file.localFile.publicURL);
   });
 
   return (
